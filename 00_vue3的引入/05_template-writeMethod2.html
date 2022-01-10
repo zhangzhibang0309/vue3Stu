@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <script src="../js/vue3.js"></script>
 </head>
-<body>
-<div id="app"></div>
 
-<!-- 用div也可以 不过会重复渲染 -->
-<template id="why">
-  <div>
-    <h2>{{ message }}</h2>
-    <h2>{{ counter }}</h2>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="btnClick">按钮</button>
-  </div>
-</template>
+<body>
+  <div id="app"></div>
+  <!-- 用div也可以 不过会重复渲染 -->
+  <!-- template是html自己提供的 而且此元素不会渲染 -->
+  <template id="why">
+    <div>
+      <h2>{{ message }}</h2>
+      <h2>{{ counter }}</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+      <button @click="btnClick">按钮</button>
+    </div>
+  </template>
 </body>
 
-<script src="./vue3.js"></script>
 <script>
   Vue.createApp({
     template: "#why",
@@ -30,7 +32,7 @@
         counter: 100
       }
     },
-    // 方法
+    // 方法 
     methods: {
       increment() {
         this.counter++
@@ -49,4 +51,5 @@
     }
   }).mount("#app")
 </script>
+
 </html>
