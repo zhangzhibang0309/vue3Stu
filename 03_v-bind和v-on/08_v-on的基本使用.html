@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue3.js"></script>
+    <style>
+        .area {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <template id="my-app">
+        <!-- 完整写法: v-on:监听的事件="methods中的方法"-->
+        <button v-on:click="btnClick">按钮1</button>
+        <div class="area" v-on:mousemove="mouseMove">div</div>
+        <!-- 语法糖 -->
+        <button @click="btnClick">按钮</button>
+        <!-- 绑定一个表达式：inline statement -->
+        <button @click="counter++">{{counter}}</button>
+        <!-- 绑定一个对象 -->
+        <button class="area" v-on="{click: btnClick,mousemove: mouseMove}">按钮</button>
+        <button class="area" @="{click: btnClick,mousemove: mouseMove}">按钮</button><!-- 试试语法糖 -->
+    </template>
+
+    <script>
+        const App = {
+            template: `#my-app`,
+            data() {
+                return {
+                    counter: 100
+                }
+            },
+            methods: {
+                btnClick() {
+                    console.log("btnClick")
+                },
+                mouseMove() {
+                    console.log("mouseMove")
+                }
+            },
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

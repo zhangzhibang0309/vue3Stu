@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue3.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- 1.mustache的基本使用 -->
+        <h2>{{message}} - {{message}}</h2>
+        <!-- 2.可以是一个表达式 -->
+        <h2>{{counter * 10}}</h2>
+        <h2>{{message.split(" ").reverse().join(" ")}}</h2>
+        <!-- 3.也可以调用函数 -->
+        <!-- 可以使用computed（计算属性） -->
+        <h2>{{getReverseMsesage()}}</h2>
+        <!-- 4.三元运算符 -->
+        <h2>{{isShow?"hhh":"nnn"}}</h2>
+        <button @click="toggle()">切换</button>
+    </template>
+    <script>
+        const App = {
+            template: `#my-app`,
+            data() {
+                return {
+                    message: "Hello World",
+                    counter: 100,
+                    isShow: true
+                }
+            },
+            methods: {
+                getReverseMsesage() {
+                    return "method data"
+                },
+                toggle() {
+                    console.log("toggle")
+                }
+            },
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue3.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .title {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <template id="my-app">
+        <!-- 普通绑定class -->
+        <div :class="className">哈哈哈哈1</div>
+
+        <!-- 对象语法： {'active': boolean} -->
+        <div :class="{active: isActive}">哈哈哈哈2</div>
+
+        <!-- 也可以有多个键值对 -->
+        <div :class="{active: isActive, title: true}">哈哈哈哈3</div>
+
+        <!-- 默认的class和动态的class结合 -->
+        <div class="abc cba" :class="{active: isActive, title: true}">哈哈哈哈4</div>
+
+        <!-- 将对象放到一个单独的属性中 -->
+        <div class="abc cba" :class="classObj">哈哈哈哈5</div>
+
+        <!-- 将对象放到一个methods（computed）方法中 -->
+        <div class="abc cba" :class="getClassObj()">哈哈哈哈6</div>
+    </template>
+
+    <script>
+        const App = {
+            template: `#my-app`,
+            data() {
+                return {
+                    className: "active",
+                    isActive: true,
+                    classObj: {
+                        active: false,
+                        title: true
+                    },
+                }
+            },
+            methods: {
+                getClassObj() {
+                    return {
+                        active: true,
+                        title: true
+                    }
+                }
+            },
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

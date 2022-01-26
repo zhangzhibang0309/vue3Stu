@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue3.js"></script>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <template id="my-app">
+        <button @click="changeInfo">changeInfo</button>
+        <button @click="changeInfoName">changeInfoName</button>
+        <button @click="changeInfoNbaName">changeInfoNbaName</button>
+    </template>
+
+    <script>
+        const App = {
+            template: `#my-app`,
+            data() {
+                return {
+                    info: {
+                        name: "zzb",
+                        age: 18,
+                        nba: {
+                            name: "kobe"
+                        }
+                    },
+                    friends: [
+                        { name: 'zzb' },
+                        { name: 'qwe' }
+                    ]
+                }
+            },
+            watch: {
+                // watch方式一
+                "info.name": { // 对于对象可以直接"xx.xx"
+                    handler(newValue, oldValue) {
+                        console.log("newValue:", newValue, "oldValue:", oldValue)
+                    },
+                },
+                // watch方式三
+                // friends: {// 对于数组不能"xx[0].xx" 可以深度监听 但是不推荐
+                //     handler(newFriends, oldFriend) {
+
+                //     },
+                //     deep: true
+                // }
+                // 更好的方式是在组件中 监听对象里面的属性
+            },
+            methods: {
+                changeInfo() {
+                    this.info = { name: "james" }
+                },
+                changeInfoName() {
+                    this.info.name = "asd"
+                },
+                changeInfoNbaName() {
+                    this.info.nba.name = "qwe"
+                }
+            },
+            created() {
+                // watch方式二
+                this.$watch("info", function (newInfo, oldInfo) {
+                    console.log(newInfo, oldInfo)
+                }, {
+                    deep: true,
+                    immediate: true
+                })
+            },
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

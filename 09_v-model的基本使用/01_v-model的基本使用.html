@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue3.js"></script>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <template id="my-app">
+        <!-- 两步操作 -->
+        <!-- v-bind value绑定message -->
+        <!-- 监听input事件,更新message -->
+        <input type="text" :value="message" @input="inputChange">
+        <br>
+        <input type="text" v-model="message">
+        <h2>{{message}}</h2>
+    </template>
+
+    <script>
+        const App = {
+            template: `#my-app`,
+            data() {
+                return {
+                    message: 'hello world'
+                }
+            },
+            methods: {
+                inputChange(event) {
+                    this.message = event.target.value
+                }
+            },
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=yes">
+  <script src="../js/vue3.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 用div也可以 不过会重复渲染 -->
+  <!-- template是html自己提供的 而且此元素不会渲染 -->
+  <template id="why">
+    <div>
+      <h2>{{ message }}</h2>
+      <h2>{{ counter }}</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+      <button @click="btnClick2">按钮</button>
+    </div>
+  </template>
+</body>
+
+<script>
+  Vue.createApp({
+    template: "#why",
+    // vue3data必须是函数
+    data() {
+      return {
+        message: 'Hello World',
+        counter: 100
+      }
+    },
+    // 方法 
+    methods: {
+      increment() {
+        this.counter++
+        console.log(this)
+      },
+      decrement: function () {
+        this.counter--
+      },
+      // methods里面不能使用箭头函数
+      // 原因？
+      btnClick: () => {
+        // 普通函数的this vue绑定到了proxy
+        // 箭头函数不绑定this 用的时候回去上层作用域 外面的this就是window
+        console.log(this)// 现在是window
+      },
+      btnClick2() {
+        console.log(this)
+      }
+    }
+  }).mount("#app")
+
+</script>
+
+</html>

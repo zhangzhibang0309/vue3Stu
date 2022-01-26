@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue3.js"></script>
+</head>
+
+<body>
+    <div id="app">
+    </div>
+
+    <template id="my-app">
+        <button @click="changeInfo">changeInfo</button>
+        <button @click="changeInfoName">changeInfoName</button>
+        <button @click="changeInfoNbaName">changeInfoNbaName</button>
+    </template>
+
+    <script>
+        const App = {
+            template: `#my-app`,
+            data() {
+                return {
+                    info: {
+                        name: "zzb",
+                        age: 18,
+                        nba: {
+                            name: "kobe"
+                        }
+                    }
+                }
+            },
+            watch: {
+                info: {
+                    handler(newValue, oldValue) {
+                        // 但是因为对象是引用类型 vue底层没做备份 所以拿不到旧值
+                        console.log("newValue:" , newValue , "oldValue:" , oldValue)
+                    },
+                    deep: true, // 这样就开启了深度侦听
+                    immediate: true // 页面加载 直接执行一次watch
+                }
+            },
+            methods: {
+                changeInfo() {
+                    this.info = { name: "james" }
+                },
+                changeInfoName() {
+                    this.info.name = "asd"
+                },
+                changeInfoNbaName() {
+                    this.info.nba.name = "qwe"
+                }
+            },
+        }
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>
