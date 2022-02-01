@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { DefinePlugin } = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader/dist/index");
 
 module.exports = {
   // 设置模式，有两种包括development和production
@@ -93,8 +94,12 @@ module.exports = {
       // }
       {
         test: /\.js$/,
-        use: "babel-loader" // 因为在babel.config.js文件里面对babel进行过配置了，所以这里只写这点就可以了。
-      }
+        use: "babel-loader", // 因为在babel.config.js文件里面对babel进行过配置了，所以这里只写这点就可以了。
+      },
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+      },
     ],
   },
   plugins: [
@@ -117,5 +122,6 @@ module.exports = {
         },
       ],
     }),
+    new VueLoaderPlugin(),
   ],
 };
