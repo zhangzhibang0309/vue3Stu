@@ -9,34 +9,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/, // 正则表达式
-        // 写法1
-        // loader: "css-loader"
-
-        // 写法2
-        use: [
-          // {loader: "css-loader"}
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-        ],
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
+
       {
-        test: /\.less$/, // 正则表达式
+        test: /\.less$/,
         use: ["style-loader", "css-loader", "less-loader"],
       },
-      // {
-      //   test: /\.(css|less)$/, // 正则表达式
-      //   use: ["style-loader", "css-loader", "less-loader"],
 
       // webpack5之前的资源打包loader
       // {
       //   test: /\.(jpg|png)$/, // 正则表达式
       //   dependency: { not: ["url"] },
       //   use: {
+      //     loader: "file-loader",
       //     loader: "url-loader",
       //     options: {
-      //       output: "img",
+      //    // output: "img",
       //       name: "img/[name]_[hash:6].[ext]",
       //       limit: 100 * 1024, // 小于这个才用base64
       //     },

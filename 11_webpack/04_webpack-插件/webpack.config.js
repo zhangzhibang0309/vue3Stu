@@ -11,6 +11,13 @@ module.exports = {
   // 这个devtool默认值是eval，改成source-map之后，当你打包后的文件报错后，不仅仅会在静态文件里面报错，会映射到你写的源文件
   devtool: "source-map",
   entry: "./src/main.js",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "build"),
+    },
+    compress: true,
+    port: 9000,
+  },
   output: {
     path: path.resolve(__dirname, "./build"),
     filename: "js/bundle.js",
@@ -82,7 +89,7 @@ module.exports = {
     new CleanWebpackPlugin(), // 打包时删除之前的dist
     new HtmlWebpackPlugin({
       template: "./src/public/index.html", // 指定模板路径
-      title: "webpackStu", // 指定htmltitle，这个也是用变量找到的
+      title: "webpackStu", // 指定h tmltitle，这个也是用变量找到的
     }),
     new DefinePlugin({
       BASE_URL: "'./'", // 填充模板里的变量
