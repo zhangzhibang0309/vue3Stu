@@ -110,6 +110,8 @@ module.exports = {
     }),
     new DefinePlugin({
       BASE_URL: "'./'", // 填充模板里的变量
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
     }),
     new CopyWebpackPlugin({
       patterns: [
@@ -124,4 +126,4 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
   ],
-};
+}; 

@@ -10111,7 +10111,7 @@ function normalizeEmitsOptions(comp, appContext) {
 
   var hasExtends = false;
 
-  if (__VUE_OPTIONS_API__ && !(0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(comp)) {
+  if ( true && !(0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(comp)) {
     var extendEmits = function extendEmits(raw) {
       var normalizedFromExtend = normalizeEmitsOptions(raw, appContext, true);
 
@@ -13301,7 +13301,7 @@ function normalizePropsOptions(comp, appContext) {
 
   var hasExtends = false;
 
-  if (__VUE_OPTIONS_API__ && !(0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(comp)) {
+  if ( true && !(0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(comp)) {
     var extendProps = function extendProps(raw) {
       hasExtends = true;
 
@@ -13883,15 +13883,13 @@ function createAppAPI(render, hydrate) {
         return app;
       },
       mixin: function mixin(_mixin) {
-        if (__VUE_OPTIONS_API__) {
+        if (true) {
           if (!context.mixins.includes(_mixin)) {
             context.mixins.push(_mixin);
           } else if (true) {
             warn('Mixin has already been applied to target app' + (_mixin.name ? ": ".concat(_mixin.name) : ''));
           }
-        } else if (true) {
-          warn('Mixins are only available in builds supporting Options API');
-        }
+        } else {}
 
         return app;
       },
@@ -14536,15 +14534,9 @@ function isSupported() {
 function initFeatureFlags() {
   var needWarn = [];
 
-  if (typeof __VUE_OPTIONS_API__ !== 'boolean') {
-     true && needWarn.push("__VUE_OPTIONS_API__");
-    (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.getGlobalThis)().__VUE_OPTIONS_API__ = true;
-  }
+  if (false) {}
 
-  if (typeof __VUE_PROD_DEVTOOLS__ !== 'boolean') {
-     true && needWarn.push("__VUE_PROD_DEVTOOLS__");
-    (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.getGlobalThis)().__VUE_PROD_DEVTOOLS__ = false;
-  }
+  if (false) {}
 
   if ( true && needWarn.length) {
     var multi = needWarn.length > 1;
@@ -17337,7 +17329,7 @@ var publicPropertiesMap = (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.extend)(Ob
     return i.emit;
   },
   $options: function $options(i) {
-    return __VUE_OPTIONS_API__ ? resolveMergedOptions(i) : i.type;
+    return  true ? resolveMergedOptions(i) : 0;
   },
   $forceUpdate: function $forceUpdate(i) {
     return function () {
@@ -17348,7 +17340,7 @@ var publicPropertiesMap = (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.extend)(Ob
     return nextTick.bind(i.proxy);
   },
   $watch: function $watch(i) {
-    return __VUE_OPTIONS_API__ ? instanceWatch.bind(i) : _vue_shared__WEBPACK_IMPORTED_MODULE_1__.NOOP;
+    return  true ? instanceWatch.bind(i) : 0;
   }
 });
 var PublicInstanceProxyHandlers = {
@@ -17430,7 +17422,7 @@ var PublicInstanceProxyHandlers = {
         /* CONTEXT */
         ;
         return ctx[key];
-      } else if (!__VUE_OPTIONS_API__ || shouldCacheAccess) {
+      } else if ( false || shouldCacheAccess) {
         accessCache[key] = 0
         /* OTHER */
         ;
@@ -17930,7 +17922,7 @@ function finishComponentSetup(instance, isSSR, skipOptions) {
   } // support for 2.x options
 
 
-  if (__VUE_OPTIONS_API__ && !false) {
+  if (true) {
     setCurrentInstance(instance);
     (0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_0__.pauseTracking)();
     applyOptions(instance);
