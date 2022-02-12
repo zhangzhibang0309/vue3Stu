@@ -1,0 +1,15 @@
+<template>
+    <div>
+        AsyncCategory
+    </div>
+</template>
+
+<script>
+    export default {
+        
+    }
+</script>
+
+<style scoped>
+
+</style>
