@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Home from "./Home.vue";
+import Home from "./07_readonly的使用.vue";
 
 export default {
   components: {
