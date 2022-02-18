@@ -1,29 +1,45 @@
 <template>
   <div>
-    <title ref="title">title</title>
+    <button @click="changeData">改变数据</button>
   </div>
 </template>
 
 <script>
-import { ref, watchEffect } from "vue";
+import { ref, watch, reactive } from "vue";
 
 export default {
   setup() {
-    // 想在setup用ref拿到元素就先开一个与标签ref相同的变量,先给他个null,然后返回,在dom挂载的时候会将元素自动绑定在这个变量上面,然后在用watchEffect去监听,就可以拿到元素
-    const title = ref(null);
-
-    watchEffect(
-      () => {
-        console.log(title.value);
+    // 定义可响应式对象
+    const info = reactive({
+      name: "zzb",
+      age: 18,
+      friend: {
+        name: "kobe",
       },
-      {
-        // flush可以控制watch的时机
-        flush: "post",
+    });
+    // 侦听器watch
+    // 默认可以深度监听
+    // watch([info, name], (newValue, oldValue) => {
+    //   console.log("newValue:", newValue, "oldValue", oldValue);
+    // });
+
+    // 如果将对象解构 就不会深度监听了
+    watch(
+      () => ({ ...info }),
+      (newValue, oldValue) => {
+        console.log("newValue:", newValue, "oldValue", oldValue);
+      },{
+        deep: true,
+        immediate: true // 加载页面立即执行
       }
     );
 
+    const changeData = () => {
+      info.friend.name = "bzz";
+    };
+
     return {
-      title,
+      changeData,
     };
   },
 };
